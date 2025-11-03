@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"RaceAll/internal/broadcast"
+	"RaceAll/internal/logger"
 	"RaceAll/internal/sharedmemory"
 )
 
@@ -26,6 +27,9 @@ func NewApp() *App {
 // so we can call the runtime methods
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
+
+	// Inicializar logger con nivel Debug
+	logger.Init(logger.DevelopmentConfig())
 
 	// Iniciar servicio de shared memory
 	if err := a.sharedMemService.Start(); err != nil {
