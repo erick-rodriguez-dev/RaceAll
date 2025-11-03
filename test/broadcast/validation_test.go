@@ -29,29 +29,6 @@ func TestValidateCarIndex(t *testing.T) {
 	}
 }
 
-func TestValidateDriverIndex(t *testing.T) {
-	tests := []struct {
-		name       string
-		index      uint16
-		maxDrivers uint8
-		wantErr    bool
-	}{
-		{"Valid index within range", 0, 3, false},
-		{"Valid index at boundary", 2, 3, false},
-		{"Invalid index out of range", 3, 3, true},
-		{"Invalid index far out", 10, 3, true},
-	}
-
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			err := broadcast.ValidateDriverIndex(tt.index, tt.maxDrivers)
-			if (err != nil) != tt.wantErr {
-				t.Errorf("ValidateDriverIndex(%d, %d) error = %v, wantErr %v", tt.index, tt.maxDrivers, err, tt.wantErr)
-			}
-		})
-	}
-}
-
 func TestValidateSessionType(t *testing.T) {
 	tests := []struct {
 		name        string

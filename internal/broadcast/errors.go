@@ -1,8 +1,6 @@
 package broadcast
 
 import (
-	"fmt"
-
 	"RaceAll/internal/errors"
 )
 
@@ -21,16 +19,8 @@ func NewValidationError(field string, value any, rule string) error {
 }
 
 func ValidateCarIndex(index uint16) error {
-	// ACC típicamente soporta hasta 60 autos en una sesión
-	if index > 999 {
-		return NewValidationError("carIndex", index, "must be less than 1000")
-	}
-	return nil
-}
-
-func ValidateDriverIndex(index uint16, maxDrivers uint8) error {
-	if index >= uint16(maxDrivers) {
-		return NewValidationError("driverIndex", index, fmt.Sprintf("must be less than %d", maxDrivers))
+	if index > 10000 {
+		return NewValidationError("carIndex", index, "must be less than 10000")
 	}
 	return nil
 }
